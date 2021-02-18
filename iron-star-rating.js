@@ -1,6 +1,5 @@
 import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
 import '@polymer/iron-icon/iron-icon.js';
-import '@polymer/iron-icons/iron-icons.js';
 /**
 * `iron-star-rating`
 * 5-star rating element (Polymer 3.x)
@@ -55,11 +54,27 @@ class IronStarRating extends PolymerElement {
                 color: #ffeb3b !important;
             }
         </style>
-    
+        
+        ${IronStarRating.iconSetComputed()}
+        
         <template is="dom-repeat" items="[[ratings]]">
             <iron-icon icon="[[icon]]" class\$="[[item.class]] [[_getSelected(item.selected)]]" on-click="_starClicked"></iron-icon>
         </template>
 `;
+  }
+
+  static iconSetComputed(){
+        return html`
+                  <iron-iconset-svg name="icons" size="24">
+                    <svg>
+                      <defs>
+                        <g id="star">
+                          <path
+                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+                        </g>
+                      </defs>
+                    </svg>
+                  </iron-iconset-svg>`;
   }
 
   static get is() { return 'iron-star-rating'; }
